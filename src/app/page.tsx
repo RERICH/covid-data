@@ -1,37 +1,39 @@
 "use client"
-import { AlignLeftOutlined, DownloadOutlined, FilterOutlined } from "@ant-design/icons";
+import { AlignLeftOutlined, DownloadOutlined, FilterOutlined, HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { PageHeader } from "@ant-design/pro-components";
 import { Badge, Button, Card, Col, Row } from "antd";
-import { cyan } from '@ant-design/colors';
+import { blue } from '@ant-design/colors';
+import LastMonth from "./components/last-month";
+import { Variants } from "./components/variants";
 
 export default function Home() {
+  
   return (
     <>
       <PageHeader
         ghost={false}
         title="Latest Covid Data"
         extra={[
-          <Button key="3"><strong>Export to PDF</strong> <DownloadOutlined style={{color: cyan.primary, fontSize: "1.1rem"}} /></Button>,
-          <Button key="2"><strong>Notes </strong> (3) <AlignLeftOutlined style={{color: cyan.primary, fontSize: "1.1rem"}} /></Button>,
+          <Button key="3"><strong>Export to PDF</strong> <DownloadOutlined style={{color: blue.primary}} /></Button>,
+          <Button key="2"><strong>Notes </strong> (3) <AlignLeftOutlined style={{color: blue.primary}} /></Button>,
           <Button key="1">
             <strong>Filter </strong> 
-            <Badge count={10} overflowCount={9} color={cyan.primary} size="small" /> 
-            <FilterOutlined style={{color: cyan.primary, fontSize: "1.1rem"}} />
+            <Badge count={10} overflowCount={9} color={blue.primary} size="small" /> 
+            <FilterOutlined style={{color: blue.primary}} />
           </Button>,
         ]}
+        style={{ padding: "1rem 0" }}
       >
       </PageHeader>
 
       <Row gutter={16}>
     <Col span={12}>
-      <Card title="Card title" bordered={false}>
-        Card content
-      </Card>
+    <LastMonth />
+      
     </Col>
+
     <Col span={12}>
-      <Card title="Card title" bordered={false}>
-        Card content
-      </Card>
+      <Variants />
     </Col>
   </Row>
     </>

@@ -13,6 +13,8 @@
     "@ant-design/icons": "^5.3.7",
     "@ant-design/nextjs-registry": "^1.0.0",
     "@ant-design/pro-components": "^2.7.9",
+    "@antv/g2": "^5.1.20",
+    "@berryv/g2-react": "^0.1.0",
     "antd": "^5.17.3",
     "next": "14.2.3",
     "react": "^18",
