@@ -3,22 +3,10 @@ import { useEffect, useState } from "react";
 import Favourite from "./favourite";
 import { Chart } from "@berryv/g2-react";
 import Comments from "./comments";
+import { trpc } from "../_trpc/client";
 
 export function Variants() {
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    async function loadData() {
-      const response = await fetch("https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/COVID-19/geography_types/Nation/geographies/England/metrics/COVID-19_cases_lineagePercentByWeek?date=2024-01-01&page_size=365&year=2024",{
-        mode: 'no-cors'});
-      const jsonData = await response.json();
-      const cleanData = jsonData.results.map((r: { stratum: string, metric_value: number }) => {
-        return { variant: r.stratum, percent: r.metric_value }
-      })
-      setData(cleanData)
-    }
-    loadData();
-  }, [])
+  const { data } = trpc.getVariants.useQuery()
   return (
     <Card
       title="Variants"
@@ -31,7 +19,7 @@ export function Variants() {
           type: "interval",
           autoFit: true,
           height: 300,
-          data: data,
+          data: data || [],
           encode: { x: "variant", y: "percent" },
 
         }}

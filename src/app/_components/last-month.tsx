@@ -4,22 +4,10 @@ import Favourite from "./favourite";
 import { useEffect, useState } from "react";
 import { Chart } from "@berryv/g2-react";
 import Comments from "./comments";
+import { trpc } from "../_trpc/client";
 
 export default function LastMonth() {
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    async function loadData() {
-      const response = await fetch("https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/COVID-19/geography_types/Nation/geographies/England/metrics/COVID-19_cases_casesByDay?year=2024&page_size=365",{
-        mode: 'no-cors'});
-      const jsonData = await response.json();
-      const cleanData = jsonData.results.slice(-30).map((r: { date: string, metric_value: number }) => {
-        return { date: r.date, count: r.metric_value }
-      })
-      setData(cleanData)
-    }
-    loadData();
-  }, [])
+  const {data} = trpc.getLastMonth.useQuery()
 
   return (
     <Card
@@ -33,7 +21,7 @@ export default function LastMonth() {
           type: "line",
           autoFit: true,
           height: 300,
-          data: data,
+          data: data || [],
           encode: { x: "date", y: "count" },
           scale: { y: { domainMin: 0 } },
           style: {
