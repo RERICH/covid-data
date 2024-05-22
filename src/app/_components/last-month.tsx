@@ -1,7 +1,7 @@
+"use client"
 import { Card } from "antd";
 import Favourite from "./favourite";
 import { useEffect, useState } from "react";
-
 import { Chart } from "@berryv/g2-react";
 import Comments from "./comments";
 

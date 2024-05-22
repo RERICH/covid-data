@@ -3,7 +3,7 @@ import { Layout } from "antd";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Content, Header } from "antd/es/layout/layout";
 import "./index.css"
-
+import Provider from "./_trpc/Provider";
 
 export const metadata: Metadata = {
   title: "Covid Data App",
@@ -20,15 +20,17 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AntdRegistry>
-          <Layout style={{ display:"flex", minHeight:"100vh" }}>
+          <Layout style={{ display: "flex", minHeight: "100vh" }}>
             <Header style={{ background: 'white' }}>
-              <strong>Covid Data App</strong>              
+              <strong>Covid Data App</strong>
             </Header>
             <Content style={{ padding: '0 48px' }}>
-              {children}            
+              <Provider>
+                {children}
+              </Provider>
             </Content>
-          </Layout>  
-        </AntdRegistry>    
+          </Layout>
+        </AntdRegistry>
       </body>
     </html>
   );
