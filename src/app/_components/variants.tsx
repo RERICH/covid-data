@@ -23,7 +23,7 @@ export function Variants() {
       title="Variants"
       bordered={false}
       extra={<Favourite slug={"variants"} />}
-      actions={[<Comments />]}
+      actions={[<Comments  key="comments" />]}
     >
       <Chart
         options={{

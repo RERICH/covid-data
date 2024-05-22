@@ -25,7 +25,7 @@ export default function LastMonth() {
       title="Cases reported in last 30 Days"
       bordered={false}
       extra={<Favourite slug={"last-month"} />}
-      actions={[<Comments />]}
+      actions={[<Comments key="comments" />]}
     >
       <Chart
         options={{
