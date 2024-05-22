@@ -10,7 +10,12 @@ export default function LastMonth() {
 
   useEffect(() => {
     async function loadData() {
-      const response = await fetch("https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/COVID-19/geography_types/Nation/geographies/England/metrics/COVID-19_cases_casesByDay?year=2024&page_size=365");
+      const response = await fetch("https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/COVID-19/geography_types/Nation/geographies/England/metrics/COVID-19_cases_casesByDay?year=2024&page_size=365",{
+        mode: 'no-cors',
+        method: "get",
+        headers: {
+             "Content-Type": "application/json"
+        }});
       const jsonData = await response.json();
       const cleanData = jsonData.results.slice(-30).map((r: { date: string, metric_value: number }) => {
         return { date: r.date, count: r.metric_value }
